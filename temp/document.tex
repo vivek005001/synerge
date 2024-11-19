@@ -1,0 +1,215 @@
+%-------------------------
+% Resume in Latex
+% Author : Vivek Aggarwal
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[pdftex]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[normalem]{ulem}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.375in}
+\addtolength{\evensidemargin}{-0.375in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item\small{
+    \textbf{#1}{: #2 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemii}{$\circ$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  CV STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING-----------------
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r} \textbf{\Large Vivek Aggarwal} & Email: \href{mailto:vivekaggarwal569@gmail.com}{vivekaggarwal569@gmail.com}\\ {\href{https://www.linkedin.com/in/vivek-aggarwal-b005b125a/}{\uline{LinkedIn}}}\hfill{\href{https://github.com/vivek005001}{\uline{Github}}} & Mobile: +91 7417899100 \\ \end{tabular*}
+
+
+%-----------EDUCATION-----------------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Indian Institute Of Technology, Mandi}{Himachal Pradesh, India}
+      {B.Tech in Computer Science; CGPA: 7.80}{Nov 2022 - Present}
+      \resumeItemListStart
+        \resumeItem{Relevant Coursework}
+          {Deep Learning and its Applications, Data Structures and Algorithms, Design of Algorithms, Data Science I,II,III, Information and Database Systems}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+
+%-----------EXPERIENCE-----------------
+% \section{Experience}
+%   \resumeSubHeadingListStart
+
+%     \resumeSubheading
+%       {Google}{Mountain View, CA}
+%       {Software Engineer}{Oct 2016 - Present}
+%       \resumeItemListStart
+%         \resumeItem{Tensorflow}
+%           {TensorFlow is an open source software library for numerical computation using data flow graphs; primarily used for training deep learning models.}
+%         \resumeItem{Apache Beam}
+%           {Apache Beam is a unified model for defining both batch and streaming data-parallel processing pipelines, as well as a set of language-specific SDKs for constructing pipelines and runners.}
+%       \resumeItemListEnd
+%   \resumeSubHeadingListEnd
+
+%--------PROGRAMMING SKILLS------------
+\section{Programming Skills}
+ \resumeSubHeadingListStart
+   \item{
+        \textbf{Languages}{: C++, Python, Javascript, HTML, CSS, Dart}
+   }
+   \item {
+        \textbf{Technologies/Frameworks}{: React.js, Next.js, Express.js, Node.js, Tailwind CSS, Flutter, MongoDB, MySQL, RestAPI, FastAPI, Firebase}
+   }
+    \item {
+        \textbf{Tools}{: VSCode, Android Studio, Git, Github, Figma(UI/UX)}
+   }
+ \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------------
+\section{Projects}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+    {Viz Assist}
+    {\href{https://github.com/vivek005001/viz_assist}{\uline{Github}}}
+    {Flutter, FastAPI, Pytorch, Google Translate}{}
+    
+        \resumeItemListStart
+            \resumeItem{Ensemble of Models}
+              {Used an ensemble of Vit+GPT2(Trained on Custom Data) and a pretrained LLaVA to Give Accurate Captions of any Scene and implemented Chat With Image feature to ask follow-up questions.}
+            \resumeItem{Inclusive Flutter App}
+               {Developed Flutter app with Fast API backend, Gesture-Based Navigation, Text-to-Speech, and Speech-to-Text, increasing user engagement by 40\%.}
+            \resumeItem{Multilingual Interface}
+              {Integrated Japanese, English, and Hindi support, expanding user base by 25\% and boosting satisfaction scores by 30\%.}
+        \resumeItemListEnd
+
+\resumeSubheading
+    {Health.AI}
+    {\href{https://github.com/vivek005001}
+    {\uline{Github}}}
+    {Python, PyTorch, FastApi, Langchain, Streamlit}{}
+
+    \resumeItemListStart
+        \resumeItem{Optimizing Differential Diagnosis}
+            {started with LLama2 model fine tuned  on MedQA and further finetuned it on
+custom Medical Conversation Data  created using ddxplus dataset on a single RTX 3090 to improve differential diagnosis.}
+        \resumeItem{Multimodal Chatbot Development:}
+             {Crafted a Multimodal RAG-based chatbot, fine-tuning a Large Language Model (LLM) using FastAPI and Streamlit. Achieved a reduction in response time by 20\%.}
+        \resumeItem{Health Data Integration}
+             {Integrated Google fit REST API with the Chatbot.}
+        
+    \resumeItemListEnd
+
+\resumeSubheading
+    {Designauts Club Website}
+    {\href{https://github.com/vivek005001/Designauts_Website}
+    {\uline{Github}}}
+    {React.js, Three.js, FramerMotion, Firebase, UI/UX}
+
+    
+    \resumeItemListStart
+        \resumeItem{Innovative UI/UX Design}
+            {Pioneered innovative UI/UX design using React.js, Three.js, and FramerMotion.}
+        \resumeItem{Dynamic Interactivity with Three.js}
+              {Integrated dynamic 3D elements with Three.js.}
+        \resumeItem{Seamless Integration with Firebase}
+              {Applied Firebase integration for streamlined data management and real-time updates, resulting in a 30\% improvement in communication efficiency and a 25\% increased collaborations.}
+    \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+  \resumeSubHeadingListEnd
+  
+%
+ 
+%--------ACHIEVEMENTS------------
+\section{Achievements}
+ \resumeSubHeadingListStart
+   \item{
+        {Won 3rd Prize in the 5th Problem Statement in Hackathon conducted by Yamaha and IIT Mandi.}
+   \item{
+        {Won 2nd Prize at FrostHack Hosted at IIT Mandi(Annual Inter College Hackathon).}
+   }
+   }
+ \resumeSubHeadingListEnd
+
+%--------VOLUNTEERING------------
+\section{Volunteering and PORs}
+ \resumeSubHeadingListStart
+ \item{
+        \textbf{Cultural Secretary}{: Gymkhana, IIT Mandi, 2024 - present}
+        
+   }
+   \item{
+        \textbf{Coordinator}{: Designauts - The Design Club of IIT Mandi, 2023-2024}
+        
+   }
+        
+ \resumeSubHeadingListEnd
+
+ \section{Other Skills}
+ \resumeSubHeadingListStart
+   \item{
+        \textbf{}{UI/UX, Graphic Design, Video Editing}\hfill
+    {\href{https://github.com/vivek005001}
+   
+    
+        
+   }
+ \resumeSubHeadingListEnd
+
+%-------------------------------------------
+\end{document}
