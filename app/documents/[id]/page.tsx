@@ -11,7 +11,7 @@ import CollaborativeEditor from '@/components/shared/CollaborativeEditor';
 
 const DocumentPage = () => {
     const router = useRouter(); // Use useRouter
-    const { id } = useParams() as { id: string };
+    const { id } = useParams();
     const [documentId, setDocumentId] = useState<string | null>(null);
     const [latexCode, setLatexCode] = useState(`\\documentclass{article}
         \\usepackage{amsmath}

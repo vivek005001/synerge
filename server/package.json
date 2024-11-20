@@ -12,6 +12,7 @@
   "description": "",
   "dependencies": {
     "nodemon": "^3.1.7",
-    "socket.io": "^4.8.1"
+    "socket.io": "^4.8.1",
+    "typescript": "^5.6.3"
   }
 }

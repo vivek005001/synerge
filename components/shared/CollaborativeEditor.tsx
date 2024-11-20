@@ -1,7 +1,7 @@
 'use client';
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
-import { useCallback, useEffect, useRef, useState } from "react";
 import { io, Socket } from "socket.io-client";
 
 interface CollaborativeEditorProps {
@@ -9,12 +9,13 @@ interface CollaborativeEditorProps {
     onChange: (content: string) => void;
 }
 
-const CollaborativeEditor: React.FC<CollaborativeEditorProps> = ({ value, onChange }) => {
+const CollaborativeEditor: React.FC<CollaborativeEditorProps> = React.memo(({ value, onChange }) => {
     const [socket, setSocket] = useState<Socket | null>(null);
     const [quill, setQuill] = useState<Quill | null>(null);
     const wrapperRef = useRef<HTMLDivElement | null>(null);
+    const isInitialMount = useRef(true);
 
-    // Socket Connection
+    // Memoized socket connection
     useEffect(() => {
         const socketUrl = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:3001';
         const s = io(socketUrl, { 
@@ -34,36 +35,29 @@ const CollaborativeEditor: React.FC<CollaborativeEditorProps> = ({ value, onChan
         }
     }, []);
 
-    // Receive Remote Changes
+    // Consolidated change handling
     useEffect(() => {
-      if(!quill || !socket) return;
-      const handler = (delta: any) => {
-        quill.updateContents(delta);
-      }
+        if (!quill || !socket) return;
 
-      socket.on('receive-changes', handler); 
+        const sendChangesHandler = (delta: any, oldDelta: any, source: string) => {
+            if (source !== 'user') return;
+            socket.emit('send-changes', delta);
+        };
 
-      return () => {
-          socket.off('receive-changes', handler);
-      }
-    },[ quill, socket]);
+        const receiveChangesHandler = (delta: any) => {
+            quill.updateContents(delta);
+        };
 
-    // Send Local Changes
-    useEffect(() => {
-        if(!quill || !socket) return;
-        const handler = (delta: any, oldDelta: any, source: string) => {
-          if (source !== 'user') return;
-          socket.emit('send-changes', delta);
-        }
-
-        quill.on('text-change', handler); 
+        quill.on('text-change', sendChangesHandler);
+        socket.on('receive-changes', receiveChangesHandler);
 
         return () => {
-            quill.off('text-change', handler);
+            quill.off('text-change', sendChangesHandler);
+            socket.off('receive-changes', receiveChangesHandler);
         }
-    },[ quill, socket]);
+    }, [quill, socket]);
 
-    // Initialize Editor
+    // Initialization and value tracking
     const initializeEditor = useCallback(() => {
         if (!wrapperRef.current) return;
 
@@ -72,21 +66,22 @@ const CollaborativeEditor: React.FC<CollaborativeEditorProps> = ({ value, onChan
         wrapperRef.current.appendChild(editorDiv);
 
         const q = new Quill(editorDiv, {
-          theme: 'snow',
-          modules: {
-            toolbar: [
-              [{ header: [1, 2, 3, false] }],
-              ["bold", "italic", "underline", "strike"],
-              [{ list: "ordered" }, { list: "bullet" }],
-              ["link", "image"],
-              ["clean"],
-            ],
-          },
+            theme: 'snow',
+            modules: {
+                toolbar: [
+                    [{ header: [1, 2, 3, false] }],
+                    ["bold", "italic", "underline", "strike"],
+                    [{ list: "ordered" }, { list: "bullet" }],
+                    ["link", "image"],
+                    ["clean"],
+                ],
+            },
         });
 
-        // Set initial value if provided
-        if (value) {
+        // Only set initial value on first mount
+        if (isInitialMount.current && value) {
             q.setText(value);
+            isInitialMount.current = false;
         }
 
         // Track changes
@@ -111,6 +106,6 @@ const CollaborativeEditor: React.FC<CollaborativeEditorProps> = ({ value, onChan
     return (
         <div ref={wrapperRef} className="h-64 border rounded-md"></div>
     );
-};
+});
 
 export default CollaborativeEditor;
